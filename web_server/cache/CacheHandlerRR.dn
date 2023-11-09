@@ -8,7 +8,7 @@ const char debugMSG[] = "[@CacheHandlerRR]"
 
 const int MAX_SIZE = 100
 
-component provides cache.CacheHandler requires io.Output out, data.IntUtil iu, util.RandomInt ir, time.Calendar ic {
+component provides cache.CacheHandler requires io.Output out, data.IntUtil iu, util.Random ir, time.Calendar ic {
 
 	static CachedResponse cache[]
 	static int arraySize
@@ -31,7 +31,7 @@ component provides cache.CacheHandler requires io.Output out, data.IntUtil iu, u
 		DateTime dt = ic.getTime()
 		int msec = dt.millisecond
 		ir.setSeed(msec)
-		return ir.get(MAX_SIZE)
+		return ir.getInt(MAX_SIZE)
 	}
 	
 	void CacheHandler:updateCache(CachedResponse ncr) {

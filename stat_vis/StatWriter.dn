@@ -20,7 +20,7 @@ component provides App requires net.TCPSocket, pal.control.RestAPI, net.http.HTT
 			restAPI.setConfig(configs[i].string)
 			
 			//write details of the configuration that we're using
-			File fd = new File(statFile, File.FILE_ACCESS_WRITE)
+			File fd = new File(statFile, File.WRITE)
 			fd.setPos(fd.getSize())
 			fd.write("conf: ")
 			fd.write(configs[i].string)
@@ -32,11 +32,11 @@ component provides App requires net.TCPSocket, pal.control.RestAPI, net.http.HTT
 				//get perception data
 				timer.sleep(STAT_INTERVAL)
 				
-				HTTPResponse r = request.get("http://$DEFAULT_SERVER_IP:$(iu.intToString(DEFAULT_SERVER_PORT))/meta/get_perception", null)
+				HTTPResponse r = request.get("http://$DEFAULT_SERVER_IP:$(iu.makeString(DEFAULT_SERVER_PORT))/meta/get_perception", null)
 				
 				char response[] = r.content
 				
-				fd = new File(statFile, File.FILE_ACCESS_WRITE)
+				fd = new File(statFile, File.WRITE)
 				fd.setPos(fd.getSize())
 				fd.write(response)
 				fd.write("\n")

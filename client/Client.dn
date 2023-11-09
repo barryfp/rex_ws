@@ -30,7 +30,7 @@ component provides App requires io.TextFile, net.TCPSocket, io.Output out, time.
 				resourceCount = 0
 				}
 			
-			if (print) out.println("average response time: $(du.decToString(avg))ms")
+			if (print) out.println("average response time: $(du.makeString(avg))ms")
 			
 			timer.sleep(1000)
 			}
@@ -77,7 +77,7 @@ component provides App requires io.TextFile, net.TCPSocket, io.Output out, time.
 			else
 			path = "client_default.txt"
 		
-		TextFile fd = new TextFile(path, File.FILE_ACCESS_READ)
+		TextFile fd = new TextFile(path, File.READ)
 		
 		if (fd != null)
 			{

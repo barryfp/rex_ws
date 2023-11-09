@@ -61,7 +61,7 @@ component provides HTTPHandler requires io.Output out, data.IntUtil iu, io.FileS
 
 		if (httpUtil.exists(resource)) {
 			returnMessage.mimeType = mt
-			File fd = new File(resource, File.FILE_ACCESS_READ)
+			File fd = new File(resource, File.READ)
 					
 			CachedResponse ncr = new CachedResponse()
 			ncr.command = httpMessage.command
@@ -74,8 +74,8 @@ component provides HTTPHandler requires io.Output out, data.IntUtil iu, io.FileS
 								"Server: $server_name\r\n",
 								//"Content-Encoding: g-zip\r\n",
 								"Content-Encoding: binary\r\n",
-								"Content-Length: $(iu.intToString(fd.getSize()))\r\n",
-								"Keep-Alive: timeout=$(iu.intToString(sleep_time/1000)), max=$(iu.intToString(100-num_req))\r\n",
+								"Content-Length: $(iu.makeString(fd.getSize()))\r\n",
+								"Keep-Alive: timeout=$(iu.makeString(sleep_time/1000)), max=$(iu.makeString(100-num_req))\r\n",
 								"Connection: Keep-Alive\r\n",
 								"Content-Type: $mt\r\n",
 								"\r\n")

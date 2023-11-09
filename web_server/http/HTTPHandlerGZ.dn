@@ -60,7 +60,7 @@ component provides HTTPHandler requires io.Output out, data.IntUtil iu, io.FileS
 				resource = new char[](newName)
 			}
 				
-			File fd = new File(resource, File.FILE_ACCESS_READ)
+			File fd = new File(resource, File.READ)
 			
 			if (fd != null)
 				{
@@ -74,8 +74,8 @@ component provides HTTPHandler requires io.Output out, data.IntUtil iu, io.FileS
 					s.socket.send("Content-Encoding: binary\r\n")
 				}
 				
-				s.socket.send("Content-Length: $(iu.intToString(fd.getSize()))\r\n")
-				s.socket.send("Keep-Alive: timeout=$(iu.intToString(sleep_time/1000)), max=$(iu.intToString(100-num_req))\r\n")
+				s.socket.send("Content-Length: $(iu.makeString(fd.getSize()))\r\n")
+				s.socket.send("Keep-Alive: timeout=$(iu.makeString(sleep_time/1000)), max=$(iu.makeString(100-num_req))\r\n")
 				s.socket.send("Connection: Keep-Alive\r\n")
 				s.socket.send("Content-Type: $mt\r\n")
 				s.socket.send("\r\n")

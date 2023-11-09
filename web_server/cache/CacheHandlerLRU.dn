@@ -30,10 +30,10 @@ component provides cache.CacheHandler requires io.Output out, data.IntUtil iu, t
 	}
 
 	void printDate(DateTime date) {
-		out.print("$(debugMSG) $(iu.intToString(date.hour)):")
-		out.print("$(iu.intToString(date.minute)):")
-		out.print("$(iu.intToString(date.second)):")
-		out.print("$(iu.intToString(date.millisecond))\n")
+		out.print("$(debugMSG) $(iu.makeString(date.hour)):")
+		out.print("$(iu.makeString(date.minute)):")
+		out.print("$(iu.makeString(date.second)):")
+		out.print("$(iu.makeString(date.millisecond))\n")
 	}
 
 	// the oldest is the one which will be replaced
